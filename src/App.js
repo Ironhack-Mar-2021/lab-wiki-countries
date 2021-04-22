@@ -8,15 +8,17 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <CountriesList />
+
+      <div class="container">
+        <div class="row">
+          <CountriesList />
 
 
-      <Switch>
-        <Route exact path="/country/:potato" component={CountryDetails} />
-
-
-      </Switch>
-
+          <Switch>
+            <Route exact path="/country/:potato" component={CountryDetails} />
+          </Switch>
+        </div>
+      </div>
     </div>
   );
 }

@@ -10,7 +10,7 @@ function CountriesList(props) {
         return countries.map((country) => {
             return (
                 <Link to={`/country/${country.cca3}`}>
-                    <li>{country.name.common}</li>
+                    <div className="list-group-item list-group-item-action" >{country.flag}{country.name.common}</div >
                 </Link>
 
             )
@@ -20,8 +20,14 @@ function CountriesList(props) {
     return (
         <div>
 
-            {newCon()}
+            <div className="col-5" style={{ maxHeight: "90vh", overflow: "scroll" }}>
+                <div className="list-group">
 
+
+                    {newCon()}
+
+                </div>
+            </div>
         </div>
     );
 }
