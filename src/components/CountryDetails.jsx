@@ -1,21 +1,43 @@
 import React from 'react';
 import countries from '../countries';
+import {Link} from 'react-router-dom';
+
 function CountryDetails(props) {
 // console.log(countries)
 //     console.log(props);
     let countryClicked = countries.find(country => country.cca3 === props.match.params.potato)
- console.log(countryClicked)
+
+    function getBorder() {
+      return countryClicked.borders.map((border, i) => {
+        let bordersArr = countries.find((country) => {
+          return country.cca3 === border
+        });
+
+        return (
+          <Link key={i} to={`/country/${border}`}>
+            <li>
+              {bordersArr.flag} {' '} {' '}
+              {bordersArr.name.common}
+            </li>
+          </Link>
+          )
+      });
+    };
+
+    console.log(getBorder());
+
+    console.log(countryClicked);
     return (
         <div>
            {/* <h1>{props.match.params.potato}</h1>
            <h1>{countryClicked.name.common}</h1> */}
-           <div className="col-7">
+           <div style={{width: '50vw'}} className="col-7">
           <h1>{countryClicked.name.common}</h1>
           <table className="table">
             <thead></thead>
             <tbody>
               <tr>
-                <td style={{width: "30%"}}>Capital</td>
+                <td >Capital</td>
                 <td>{countryClicked.capital[0]}</td>
               </tr>
               <tr>
@@ -29,14 +51,7 @@ function CountryDetails(props) {
                 <td>Borders</td>
                 <td>
                   <ul>
-                    <li><a href="/AND">Andorra</a></li>
-                    <li><a href="/BEL">Belgium</a></li>
-                    <li><a href="/DEU">Germany</a></li>
-                    <li><a href="/ITA">Italy</a></li>
-                    <li><a href="/LUX">Luxembourg</a></li>
-                    <li><a href="/MCO">Monaco</a></li>
-                    <li><a href="/ESP">Spain</a></li>
-                    <li><a href="/CHE">Switzerland</a></li>
+                    {getBorder()}
                   </ul>
                 </td>
               </tr>

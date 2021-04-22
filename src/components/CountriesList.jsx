@@ -7,9 +7,9 @@ function CountriesList(props) {
 
 
     const newCon = () => {
-        return countries.map((country) => {
+        return countries.map((country, i) => {
             return (
-                <Link to={`/country/${country.cca3}`}>
+                <Link key={i} to={`/country/${country.cca3}`}>
                     <div className="list-group-item list-group-item-action" >{country.flag}{country.name.common}</div >
                 </Link>
 
